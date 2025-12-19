@@ -7,8 +7,8 @@ services:
         # Add AVIF MIME types to nginx configuration
         - echo "    image/avif                                       avif;" >> /etc/nginx/mime.types
         - echo "    image/avif-sequence                              avifs;" >> /etc/nginx/mime.types
-        # Restart nginx to apply changes (using runit service manager)
-        - sv restart nginx
         # Link the document root to the expected path. This example links the
         # root of the git repository to the docroot
         - ln -snf "${TUGBOAT_ROOT}/add-avif-mime-support/web" "${DOCROOT}"
+        # Restart nginx to apply changes (using runit service manager)
+        - sv restart nginx
