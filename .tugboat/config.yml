@@ -10,5 +10,3 @@ services:
         # Link the document root to the expected path. This example links the
         # root of the git repository to the docroot
         - ln -snf "${TUGBOAT_ROOT}/add-avif-mime-support/web" "${DOCROOT}"
-        # Restart nginx to apply changes (using runit service manager)
-        - sv restart nginx
