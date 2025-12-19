@@ -4,24 +4,12 @@ services:
     default: true
     commands:
       init:
-        # Show the end of the mime.types file BEFORE modification
-        - echo "=== BEFORE modification ==="
-        - tail -5 /etc/nginx/mime.types
-
         # Stop nginx before modifying config
         - sv stop nginx
 
-        # Add AVIF MIME types BEFORE the closing brace
+        # Add AVIF MIME types support
         - sed -i '/^}$/i \    image/avif                                       avif;' /etc/nginx/mime.types
         - sed -i '/^}$/i \    image/avif-sequence                              avifs;' /etc/nginx/mime.types
-
-        # Show the end AFTER modification
-        - echo "=== AFTER modification ==="
-        - tail -10 /etc/nginx/mime.types
-
-        # Test nginx configuration syntax
-        - echo "=== Testing nginx config ==="
-        - nginx -t
 
         # Link the document root to the expected path
         - ln -snf "${TUGBOAT_ROOT}/add-avif-mime-support/web" "${DOCROOT}"
