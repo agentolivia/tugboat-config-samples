@@ -1,6 +1,6 @@
 services:
   php:
-    image: tugboatqa/php-nginx:8.3.8-fpm-bullseye
+    image: tugboatqa/php-nginx:8.3-fpm-bookworm
     default: true
     commands:
       init:
